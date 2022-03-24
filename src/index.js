@@ -2,6 +2,9 @@
 
  import _, { divide } from 'lodash';
  import './style.css';
+ import Icon from './kebab.png';
+ import Icon from './refresh.svg'
+ 
 
  let toDoList = [
   {description: "attend PTM", completed: true, index: 0},
@@ -19,12 +22,17 @@ function createList(toDoList) {
     const listHolder = document.createElement('div');
     listHolder.className = 'list-holder';
     let {description, completed, index} = toDoList[i];
-    listHolder.innerHTML = [description, completed, index];
-    dynamicList.appendChild(listHolder);
+    const mainText = listHolder.innerHTML = [description, completed, index];
+    mainText.className = 'myMainText';
+    const myIcon = new Image();
+    myIcon.src = Icon;
+    myIcon.className = 'kebab-icon';
+    listHolder.appendChild(myIcon);
     const myCheckBox = document.createElement('input');
     myCheckBox.className = 'my-check-box';
     myCheckBox.type = "checkbox";
     listHolder.appendChild(myCheckBox);
+    dynamicList.appendChild(listHolder);
   }
   
   
