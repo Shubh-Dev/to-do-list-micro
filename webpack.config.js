@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -12,13 +13,11 @@ module.exports = {
     static: './dist',
   },
   plugins: [
-    new HtmlWebpackPlugin({
+  new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
   ],
-  /* eslint-disable */
   output: {
-  /* eslint-enable */
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
@@ -33,9 +32,10 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
         generator: {
-        filename: 'img/[name][ext]',
-        }, 
+          filename: 'img/[name][ext]',
+        },
       },
     ],
   },
 };
+ /* eslint-enable */

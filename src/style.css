@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font: 21px/1.5 Ariel helvetica sans-serif;
+  font: 21px/1.5 Ariel, helvetica sans-serif;
   background-color: lightgray;
 }
 
@@ -11,7 +11,6 @@ body {
   margin-top: 20vh;
   border: 2px solid black;
   background-color: #fff;
-  
 }
 
 .list-holder {
@@ -27,6 +26,8 @@ body {
 
 .my-check-box {
   grid-area: left;
+  width: 25px;
+  height: 25px;
 }
 
 .kebab-icon {
@@ -53,11 +54,6 @@ h1 {
   padding-right: 20px;
 }
 
-.my-check-box {
-  width: 25px;
-  height: 25px;
-}
-
 .clear {
   background-color: lightgray;
   text-align: center;
@@ -72,8 +68,3 @@ h1 {
   padding-left: 20px;
   color: grey;
 }
-
-
-
-
-
