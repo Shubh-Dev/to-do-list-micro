@@ -4,7 +4,7 @@
 
 ## Built With
 
-- Major languages: HTML & CSS
+- Major languages: HTML  CSS & JavaScript
 - Frameworks: none
 - Technologies used: Webpack
 
