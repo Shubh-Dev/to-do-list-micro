@@ -3,7 +3,7 @@
  import _, { divide } from 'lodash';
  import './style.css';
  import Icon from './kebab.png';
- import Icon from './refresh.svg'
+ import Icon1 from './refresh.svg'
  
 
  let toDoList = [
@@ -22,7 +22,7 @@ function createList(toDoList) {
     const listHolder = document.createElement('div');
     listHolder.className = 'list-holder';
     let {description, completed, index} = toDoList[i];
-    const mainText = listHolder.innerHTML = [description, completed, index];
+    const mainText = listHolder.innerHTML = [description];
     mainText.className = 'myMainText';
     const myIcon = new Image();
     myIcon.src = Icon;
@@ -34,8 +34,12 @@ function createList(toDoList) {
     listHolder.appendChild(myCheckBox);
     dynamicList.appendChild(listHolder);
   }
-  
-  
 } 
-
 createList(toDoList);
+
+const refreshImg = new Image();
+refreshImg.src = Icon1;
+refreshImg.className = 'refresh-image';
+
+const headlineDivision = document.querySelector('.headline');
+headlineDivision.appendChild(refreshImg);

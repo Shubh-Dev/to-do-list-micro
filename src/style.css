@@ -18,7 +18,7 @@ body {
   border-bottom: 1px solid rgb(159, 165, 159);
   display: grid;
   grid-template-areas: 'left center right';
-  grid-template-columns: 1fr 7fr 1fr;
+  grid-template-columns: 1fr 7fr 20px;
   grid-template-rows: 50px;
   grid-gap: 5px;
   background-color: #fff;
@@ -37,10 +37,6 @@ body {
   grid-area: center;
 }
 
-/* .list-holder:nth-child(1) {order:2;}
-/* .list-holder:nth-child(2) {order:3;} */
-/* .list-holder:nth-child(3) {order:1;} */ */
-
 h1 {
   font-size: 25px;
   padding-left: 20px;
@@ -48,9 +44,13 @@ h1 {
 
 .headline {
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between;
   background-color: #fff;
   border-bottom: 1px solid lightgray;
+}
+
+.refresh-image {
+  padding-right: 20px;
 }
 
 .my-check-box {
