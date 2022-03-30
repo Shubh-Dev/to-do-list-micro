@@ -5,37 +5,76 @@ import _, { divide } from 'lodash';
 import './style.css';
 import Icon from './kebab.png';
 import Icon1 from './refresh.svg';
+import Icon2 from './trash.svg';
 
-const toDoList = [
-  { description: 'attend PTM', completed: true, index: 0 },
-  { description: 'buy grocery', completed: true, index: 1 },
-  { description: 'run pc maintanance', completed: false, index: 2 },
-  { description: 'wash car', completed: true, index: 3 },
-  { description: 'exercise', completed: false, index: 4 },
-];
 
-function createList(toDoList) {
-  for (let i = 0; i < toDoList.length; i += 1) {
-    const dynamicList = document.querySelector('.dynamic-list');
-    const listHolder = document.createElement('div');
-    listHolder.className = 'list-holder';
-    /* eslint-disable */
-    const { description, completed, index } = toDoList[i];
-    const mainText = listHolder.innerHTML = [description];
-    /* eslint-enable */
-    mainText.className = 'myMainText';
-    const myIcon = new Image();
-    myIcon.src = Icon;
-    myIcon.className = 'kebab-icon';
-    listHolder.appendChild(myIcon);
-    const myCheckBox = document.createElement('input');
-    myCheckBox.className = 'my-check-box';
-    myCheckBox.type = 'checkbox';
-    listHolder.appendChild(myCheckBox);
-    dynamicList.appendChild(listHolder);
-  }
-}
-createList(toDoList);
+const innerContainer2 = document.querySelector('.inner-container2');
+const dynamicList = document.querySelector('.dynamic-list');
+let notesObj = [];
+const inputText = document.querySelector('.field-input');
+  inputText.addEventListener("keyup", (event)=> {
+      if (event.keyCode === "Enter") { 
+        event.preventDefault()
+        notesObj.push(inputText.value);
+        displayNotes(); 
+        localStorage.setItem('notes', JSON.stringify(notesObj));
+      }
+  const notes = localStorage.getItem('notes');
+  if (notes == null) {
+    notesObj = [];
+  } else {
+    notesObj = JSON.parse(notes);
+  };
+  notesObj.push(inputText.value);
+  localStorage.setItem('notes', JSON.stringify(notesObj));
+  inputText.value = '';
+  displayNotes();
+});
+
+function displayNotes() {
+  const notes = localStorage.getItem('notes');
+  if (notes == null) {
+    notesObj = [];
+  } else {
+    notesObj = JSON.parse(notes);
+  };
+  // let html = "";
+  
+  notesObj.forEach(function (element, index) {
+    const taskDivision = document.createElement('div');
+    taskDivision.className = 'inner-main-container';
+    taskDivision.innerHTML += 
+  `<div class="inner-container1"> 
+  <input class="check-box" type="checkbox"> <p>${element}</p>
+  </div>
+  <div class="inner-container2">
+  <button id='${index}' class="remove-btn">Remove</button>
+  </div>`
+  dynamicList.appendChild(taskDivision);
+  const removeButton = document.querySelectorAll('.remove-btn');
+  removeButton.forEach((button)  => {
+    button.addEventListener('click', deleteList())
+  });
+  });
+  
+ 
+  // if (notesObj.length != 0) {
+  //   dynamicList.innerHTML = html;
+  //   console.log(notesObj.length);
+  // } else {
+  //   dynamicList.innerHTML = 'Nothing to show! Add a to do item.';
+  // };
+};
+
+
+
+function deleteList() {
+  console.log('I am deleting');
+};
+// displayNotes();
+// removeButton.addEventListener('click', () => {
+//   console.log('I am deleting');
+// });
 
 const refreshImg = new Image();
 refreshImg.src = Icon1;
