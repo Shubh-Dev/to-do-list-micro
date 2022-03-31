@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
   /* eslint-enable */
 });
 
-
 const getLocalStorage = () => {
   const todoStorage = localStorage.getItem('Todos');
   if (todoStorage === null) {
