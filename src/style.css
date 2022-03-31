@@ -13,31 +13,6 @@ body {
   background-color: #fff;
 }
 
-.list-holder {
-  border-bottom: 1px solid rgb(159, 165, 159);
-  display: grid;
-  grid-template-areas: 'left center right';
-  grid-template-columns: 1fr 7fr 20px;
-  grid-template-rows: 50px;
-  grid-gap: 5px;
-  background-color: #fff;
-  padding: 20px;
-}
-
-.my-check-box {
-  grid-area: left;
-  width: 25px;
-  height: 25px;
-}
-
-.kebab-icon {
-  grid-area: right;
-}
-
-.myMainText {
-  grid-area: center;
-}
-
 h1 {
   font-size: 25px;
   padding-left: 20px;
@@ -50,21 +25,59 @@ h1 {
   border-bottom: 1px solid lightgray;
 }
 
-.refresh-image {
-  padding-right: 20px;
-}
-
 .clear {
-  background-color: lightgray;
+  background: lightgray;
   text-align: center;
-  padding: 15px;
+  padding: 1px;
 }
 
 .input-field {
   border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
 }
 
 .field-input {
-  padding-left: 20px;
   color: grey;
+  width: 80%;
+  height: 100%;
+  border: 0 solid;
+  outline: none;
+  font-size: 18px;
+}
+
+.refresh-image {
+  padding-right: 20px;
+  width: 20px;
+  height: auto;
+}
+
+.trash-image {
+  width: 20px;
+  height: auto;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.inner-main-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px 0 20px;
+  min-height: 60px;
+  border-bottom: 1px solid lightgray;
+}
+
+.section-1 {
+  display: flex;
+  gap: 27px;
+}
+
+.label {
+  margin-top: 8px;
+}
+
+input[type=checkbox] {
+  transform: scale(1.5);
+  margin-top: 18px;
 }

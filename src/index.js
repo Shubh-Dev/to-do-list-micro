@@ -1,45 +1,71 @@
 // src/index.js
-/* eslint-disable */
-import _, { divide } from 'lodash';
-/* eslint-enable */
+
 import './style.css';
-import Icon from './kebab.png';
 import Icon1 from './refresh.svg';
+import setLocalStorage from './modules/setLocalStorage.js';
+import handleToDo from './modules/handleToDo.js';
 
-const toDoList = [
-  { description: 'attend PTM', completed: true, index: 0 },
-  { description: 'buy grocery', completed: true, index: 1 },
-  { description: 'run pc maintanance', completed: false, index: 2 },
-  { description: 'wash car', completed: true, index: 3 },
-  { description: 'exercise', completed: false, index: 4 },
-];
+const dynamicDivision = document.querySelector('.dynamic-list');
+const mainForm = document.querySelector('.main-form');
+const mainInput = document.querySelector('.field-input');
+let taskArr = [];
 
-function createList(toDoList) {
-  for (let i = 0; i < toDoList.length; i += 1) {
-    const dynamicList = document.querySelector('.dynamic-list');
-    const listHolder = document.createElement('div');
-    listHolder.className = 'list-holder';
-    /* eslint-disable */
-    const { description, completed, index } = toDoList[i];
-    const mainText = listHolder.innerHTML = [description];
+document.addEventListener('DOMContentLoaded', () => {
+  mainForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const textValue = mainInput.value;
+    const itemObj = {
+      ID: taskArr.length + 1,
+      Description: textValue,
+      Completed: false,
+    };
+    taskArr.push(itemObj);
+    setLocalStorage(taskArr);
+    /* eslint-disable no-use-before-define */
+    getList(taskArr);
     /* eslint-enable */
-    mainText.className = 'myMainText';
-    const myIcon = new Image();
-    myIcon.src = Icon;
-    myIcon.className = 'kebab-icon';
-    listHolder.appendChild(myIcon);
-    const myCheckBox = document.createElement('input');
-    myCheckBox.className = 'my-check-box';
-    myCheckBox.type = 'checkbox';
-    listHolder.appendChild(myCheckBox);
-    dynamicList.appendChild(listHolder);
+    mainForm.reset();
+  });
+  /* eslint-disable no-use-before-define */
+  getLocalStorage();
+  /* eslint-enable */
+});
+
+const getLocalStorage = () => {
+  const todoStorage = localStorage.getItem('Todos');
+  if (todoStorage === null) {
+    taskArr = [];
+  } else {
+    /* eslint-disable no-use-before-define */
+    taskArr = JSON.parse(todoStorage);
+    /* eslint-enable */
+  }
+  /* eslint-disable no-use-before-define */
+  getList(taskArr);
+  /* eslint-enable */
+};
+
+function getList(myToDos) {
+  dynamicDivision.innerHTML = '';
+  if (myToDos.length > 0) {
+    myToDos.forEach((todo) => {
+      dynamicDivision.insertAdjacentHTML('beforeend', `<div class = "inner-main-container todo">
+                 <div class="section-1" data-time="${todo.ID}">
+                     <input type="checkbox" class="check-box">
+                     <label class="label" contenteditable="true">${todo.Description}</label>
+
+                 </div> 
+                <div class="section-2"> 
+                 <span class="fa fa-trash trash-image remove-btn"></span>
+                </div>
+              </div>`);
+      handleToDo(todo, taskArr);
+    });
   }
 }
-createList(toDoList);
 
-const refreshImg = new Image();
-refreshImg.src = Icon1;
-refreshImg.className = 'refresh-image';
-
-const headlineDivision = document.querySelector('.headline');
-headlineDivision.appendChild(refreshImg);
+const refreshImage = new Image();
+refreshImage.src = Icon1;
+const headlineSection = document.querySelector('.headline');
+headlineSection.appendChild(refreshImage);
+refreshImage.className = 'refresh-image';
