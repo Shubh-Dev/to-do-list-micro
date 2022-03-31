@@ -58,6 +58,7 @@ h1 {
   width: 20px;
   height: auto;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .inner-main-container {
