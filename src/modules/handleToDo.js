@@ -24,7 +24,7 @@ const handleToDo = (todo, todoItems) => {
       item.querySelector('.label').addEventListener('blur', () => {
         const itemIndex = todoItems.indexOf(todo);
         const currentItem = todoItems[itemIndex];
-        currentItem.Description = item.textContent;
+        currentItem.Description = item.innerText;
         todoItems.splice(itemIndex, 1, currentItem);
         setLocalStorage(todoItems);
       });
