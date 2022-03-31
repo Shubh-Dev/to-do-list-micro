@@ -1,11 +1,7 @@
 // src/index.js
-/* eslint-disable */
-import _, { divide } from 'lodash';
-/* eslint-enable */
+
 import './style.css';
-import Icon from './kebab.png';
 import Icon1 from './refresh.svg';
-import Icon2 from './trash.svg';
 import setLocalStorage from './modules/setLocalStorage.js';
 import handleToDo from './modules/handleToDo.js';
 
@@ -15,39 +11,39 @@ const mainInput = document.querySelector('.field-input');
 let taskArr = [];
 
 document.addEventListener('DOMContentLoaded', () => {
-    mainForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const textValue = mainInput.value;
-        const itemObj = {
-            ID: taskArr.length + 1,
-            Description: textValue,
-            Completed: false,
-          };
-          taskArr.push(itemObj);
-          setLocalStorage(taskArr);
-          // display todos in realtime
-          getList(taskArr);
-          mainForm.reset();
-    });
-    getLocalStorage();
+  mainForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const textValue = mainInput.value;
+    const itemObj = {
+      ID: taskArr.length + 1,
+      Description: textValue,
+      Completed: false,
+    };
+    taskArr.push(itemObj);
+    setLocalStorage(taskArr);
+    // display todos in realtime
+    getList(taskArr);
+    mainForm.reset();
+  });
+  getLocalStorage();
 });
 
 // get items from local storage
 const getLocalStorage = () => {
-    const todoStorage = localStorage.getItem('Todos');
-    if (todoStorage === null) {
-       taskArr = [];
-    } else {
-      taskArr = JSON.parse(todoStorage);
-    }
-    getList(taskArr);
-  };
+  const todoStorage = localStorage.getItem('Todos');
+  if (todoStorage === null) {
+    taskArr = [];
+  } else {
+    taskArr = JSON.parse(todoStorage);
+  }
+  getList(taskArr);
+};
 
 function getList(myToDos) {
-    dynamicDivision.innerHTML = '';
-    if(myToDos.length > 0) {
-        myToDos.forEach(todo => {
-            dynamicDivision.insertAdjacentHTML('beforeend', `<div class = "inner-main-container todo">
+  dynamicDivision.innerHTML = '';
+  if (myToDos.length > 0) {
+    myToDos.forEach((todo) => {
+      dynamicDivision.insertAdjacentHTML('beforeend', `<div class = "inner-main-container todo">
                  <div class="section-1" data-time="${todo.ID}">
                      <input type="checkbox" class="check-box">
                      <label class="label" contenteditable="true">${todo.Description}</label>
@@ -57,45 +53,16 @@ function getList(myToDos) {
                  <span class="fa fa-trash trash-image remove-btn"></span>
                 </div>
               </div>`);
-              handleToDo(todo, taskArr);
-        }); 
-    
-    };
+      handleToDo(todo, taskArr);
+    });
+  }
+}
 
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const refreshImage = new Image();
-// refreshImage.src = Icon1;
-// const headlineSection = document.querySelector('.headline');
-// headlineSection.appendChild(refreshImage);
-// refreshImage.className = 'refresh-image';
+const refreshImage = new Image();
+refreshImage.src = Icon1;
+const headlineSection = document.querySelector('.headline');
+headlineSection.appendChild(refreshImage);
+refreshImage.className = 'refresh-image';
 
 // const inputText = document.querySelector('.field-input');
 // const dynamicList = document.querySelector('.dynamic-list');
@@ -107,7 +74,7 @@ function getList(myToDos) {
 //     // } else {
 //     //     taskArr = JSON.parse(yourData);
 //     // };
-    
+
 //     inputText.addEventListener("keypress", (e) => {
 //         if (e.key == "Enter") {
 //             e.preventDefault();
@@ -121,20 +88,18 @@ function getList(myToDos) {
 // };
 // addTask();
 
-
 // function displayTask(element) {
 //     dynamicList.innerHTML += `<div class = inner-main-container>
 //     <div class="section-1">
 //         <input type="checkbox" class="check-box">
 //           <p>${element}</p>
-//     </div> 
-//     <div class="section-2"> 
+//     </div>
+//     <div class="section-2">
 //     <span class="fa-regular fa-trash trash-image"></span>
 //     </div>
 //  </div>`
 
 // };
-
 
 // function localstorage() {
 //     if (localStorage !== null) {

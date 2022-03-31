@@ -57,23 +57,29 @@ h1 {
 .trash-image {
   width: 20px;
   height: auto;
-  margin-top: 20px;
+  margin-top: 15px;
   cursor: pointer;
 }
 
 .inner-main-container {
   display: flex;
   justify-content: space-between;
-  padding: 0 20px 0 20px;
+  padding: 10px 20px 0 20px;
+  min-height: 60px;
+  border-bottom: 1px solid lightgray;
+
 }
 
 .section-1 {
   display: flex;
-  gap: 15px;
+  gap: 27px;
 }
 
-.check-box {
-  margin-top: 31px;
-  width: 20px;
+.label {
+  margin-top: 8px;
 }
 
+input[type=checkbox] {
+  transform: scale(1.5);
+  margin-top: 18px;
+}
