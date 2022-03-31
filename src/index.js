@@ -21,22 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     taskArr.push(itemObj);
     setLocalStorage(taskArr);
-    // display todos in realtime
+    /* eslint-disable no-use-before-define */
     getList(taskArr);
+    /* eslint-enable */
     mainForm.reset();
   });
+  /* eslint-disable no-use-before-define */
   getLocalStorage();
+  /* eslint-enable */
 });
 
-// get items from local storage
+
 const getLocalStorage = () => {
   const todoStorage = localStorage.getItem('Todos');
   if (todoStorage === null) {
     taskArr = [];
   } else {
+    /* eslint-disable no-use-before-define */
     taskArr = JSON.parse(todoStorage);
+    /* eslint-enable */
   }
+  /* eslint-disable no-use-before-define */
   getList(taskArr);
+  /* eslint-enable */
 };
 
 function getList(myToDos) {
@@ -63,80 +70,3 @@ refreshImage.src = Icon1;
 const headlineSection = document.querySelector('.headline');
 headlineSection.appendChild(refreshImage);
 refreshImage.className = 'refresh-image';
-
-// const inputText = document.querySelector('.field-input');
-// const dynamicList = document.querySelector('.dynamic-list');
-// let taskArr = [];
-// function addTask() {
-//     // const yourData = localStorage.getItem('data');
-//     // if (yourData == null) {
-//     //     taskArr = [];
-//     // } else {
-//     //     taskArr = JSON.parse(yourData);
-//     // };
-
-//     inputText.addEventListener("keypress", (e) => {
-//         if (e.key == "Enter") {
-//             e.preventDefault();
-//             taskArr.push(inputText.value);
-//             displayTask(inputText.value);
-//             localStorage.setItem('data', JSON.stringify(taskArr));
-//             inputText.value = "";
-//         };
-//     });
-//     localstorage();
-// };
-// addTask();
-
-// function displayTask(element) {
-//     dynamicList.innerHTML += `<div class = inner-main-container>
-//     <div class="section-1">
-//         <input type="checkbox" class="check-box">
-//           <p>${element}</p>
-//     </div>
-//     <div class="section-2">
-//     <span class="fa-regular fa-trash trash-image"></span>
-//     </div>
-//  </div>`
-
-// };
-
-// function localstorage() {
-//     if (localStorage !== null) {
-//       const store = JSON.parse(localStorage.getItem('data'));
-//       store.forEach((inputText, index) => {
-//      displayTask();
-//       });
-//     };
-//   };
-
-//   const todoStorage = localStorage.getItem('Todos');
-//   if (todoStorage === null) {
-//     todoItems = [];
-//   } else {
-//     todoItems = JSON.parse(todoStorage);
-//   }
-//   getList(todoItems);
-
-// displayTask()
-
-// function appendItems() {
-// const refreshImage = new Image();
-// refreshImage.src = Icon1;
-// const headlineSection = document.querySelector('.headline');
-// headlineSection.appendChild(refreshImage);
-// refreshImage.className = 'refresh-image';
-// const trashImage = new Image();
-// trashImage.src = Icon2;
-// const section2 = document.querySelector('.section-2');
-// section2.appendChild(trashImage);
-// trashImage.className = 'trash-image';
-// localStorage.setItem('data', JSON.stringify(taskArr));
-// };
-
-// function removeTask() {
-//     const trashImage = document.querySelector('.trash-image');
-//     trashImage.addEventListener('click', () => {
-//         console.logh('I am working');
-//     });
-// };
